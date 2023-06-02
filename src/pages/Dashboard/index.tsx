@@ -6,6 +6,7 @@ import { Input } from '../../components/Input'
 import { TransactionExpenses } from '../../components/TransactionExpenses'
 import { Container, Transactions } from './styles'
 import { EmployesDTO } from '../../storage/EmployesDTO'
+import { TotalsDTO } from '../../storage/TotalsDTO'
 
 
 
@@ -47,13 +48,33 @@ export function Dashboard() {
     setSale('')
   }
   function totals(){
+    // //total por região
+    // console.log(sales)
+    // const totals: TotalsDTO[] = []
+    // const countries = ['norte','sul','nordeste','sudeste']
+    // countries.forEach(country => {
+    //   const totalCountry = sales
+    //   .filter(data => data.region.toLowerCase() === country)
+    //   .reduce((total, obj) => total += obj.sale, 0)
+    //   const dataObject = {
+    //     regiao: country,
+    //     totalRegiao: totalCountry,
+    //   }
+    //   totals.push(dataObject)
+    // })
     console.log(sales)
-    const countries = ['norte','sul','nordeste','sudeste']
-    countries.forEach(country => {
-      const totalCountry = sales
-      .filter(data => data.region.toLowerCase() === country)
+    const totals: TotalsDTO[] = []
+    const cpfs = ['11111111111','22222222222','33333333333']
+    cpfs.forEach(CPF => {
+      const totalCPF = sales
+      .filter(data => data.cpf.toLowerCase() === CPF)
       .reduce((total, obj) => total += obj.sale, 0)
-      console.log(totalCountry)
+      const dataObject = {
+        regiao: cpf,
+        totalRegiao: totalCPF,
+      }
+      totals.push(dataObject)
+      console.log(dataObject)
     })
   }
 
